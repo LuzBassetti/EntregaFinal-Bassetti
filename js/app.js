@@ -40,6 +40,11 @@ function precioTotal(precio, cantChoco, cantCheese, cantLemon){
 let total=(precio*cantChoco)+(precio*cantCheese)+(precio*cantLemon)
 return total
 }
+// function produtos (nombre, size, precio){
+//     this.nombre=nombre;
+//     this.size=size;
+//     this.precio=precio
+// }
 
 let producto
 let size
@@ -48,8 +53,17 @@ let sizeName
 let decision
 let opcion
 let precio
-let chocoP = 4000, chocoM = 5500, chocoG = 7000, cheeseP = 4500, cheeseM = 6000, cheeseG = 8000, lemonP = 3500, lemonM = 4500, lemonG = 6500
 let cantChoco=0, cantCheese=0, cantLemon=0
+let chocoP = 4000, chocoM = 5500, chocoG = 7000, cheeseP = 4500, cheeseM = 6000, cheeseG = 8000, lemonP = 3500, lemonM = 4500, lemonG = 6500
+// const chocoP = new productos("Chocotorta", "Pequeña", 4000)
+// const chocoM = new productos("Chocotorta", "Mediana", 5500)
+// const chocoG = new productos("Chocotorta", "Grande", 7000)
+// const cheeseP = new productos("Cheesecake", "Pequeña", 4500)
+// const cheeseM = new productos("Cheesecake", "Mediana", 6000)
+// const cheeseG = new productos("Cheesecake", "Grande", 8000)
+// const lemonP = new productos("LemonPie", "Pequeña", 3500)
+// const lemonM = new productos("LemonPie", "Mediana", 4500)
+// const lemonG = new productos("LemonPie", "Grande", 6500)
 
 
 alert("Bienvenido a `Pasteleria y decoracion`");
