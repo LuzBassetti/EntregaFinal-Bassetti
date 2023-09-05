@@ -1,0 +1,13 @@
+//IMPORTO ABSTRACTS
+@import './abstracts/variables';
+
+// CONFIGURACION INICIAL
+* {
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 0;
+    color: nth($paletacolores , 7);
+}
+
+//IMPORTO COMPONENTES
+@import './componentes/index';

@@ -14,6 +14,7 @@ function precioTotal() {
     }
     return total;
 }
+
 class producto {
     constructor(nombreId, nombre, sizeId, size, precio) {
         this.nombreId = nombreId;
