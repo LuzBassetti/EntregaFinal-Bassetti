@@ -1,8 +1,38 @@
-// .container{
-//     margin-left: 3vw;
-//     margin-right: 3vw;
-// }
+.mainindex{
+    @include grids(grid, 52vw 38vw, auto, 2vw, 20px 4vw);
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .mainindex {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+    }
+}
+.contppal{
+    text-align: center;
+}
+h1{
+    color: nth($paletacolores, 1);
+    font-family: map-get($formato, font1);
+    font-size: map-get($formato, sizeTitulo);
+}
+#pyd{
+    font-family: 'Dancing Script', cursive;
+    font-size: 70px;
+}
+#bienvenidos, .subtitulo{
+    font-family: map-get($formato, font1);
+    font-size: map-get($formato, sizeSubtitulo);
+    font-weight: map-get($formato, peso2);
+}
 
-// .card{
-//     margin: 0.1vw;
-// }
+.subtitulo {
+    text-align: center;
+    flex-wrap: wrap;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    color: nth($paletacolores, 1);
+}

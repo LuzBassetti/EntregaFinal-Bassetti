@@ -30,6 +30,7 @@ const DOMitems = document.getElementById('items');
 const DOMcarrito = document.getElementById('carrito');
 const DOMtotal = document.getElementById('total');
 const DOMbotonVaciar = document.getElementById('boton-vaciar');
+const DOMbotonComprar = document.getElementById('boton-comprar');
 const miLocalStorage = window.localStorage;
 
 
@@ -192,6 +193,7 @@ function cargarCarritoDeLocalStorage () {
 
 // Eventos
 DOMbotonVaciar.addEventListener('click', vaciarCarrito);
+DOMbotonComprar.addEventListener('click', vaciarCarrito);// aca se supone que redirige a pasarela de pagos para pagar
 
 // Inicio
 cargarCarritoDeLocalStorage();
