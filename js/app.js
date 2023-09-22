@@ -84,13 +84,25 @@ function renderizarProductos() {
  * Evento para añadir un producto al carrito de la compra
  */
 function agregarProductoAlCarrito(evento) {
+    //Agregado de toastify
+    Toastify({
+        text: "Producto agregado!",
+        duration: 1500,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+    }).showToast();
+
     // Agrego el Nodo a nuestro carrito
     carrito.push(evento.target.getAttribute('marcador'))
     // Actualiza el carrito 
     renderizarCarrito();
     // Actualiz el LocalStorage
     guardarCarritoEnLocalStorage();
-
 }
 
 /**
@@ -140,6 +152,18 @@ function renderizarCarrito() {
  * Evento para borrar un elemento del carrito
  */
 function borrarItemCarrito(evento) {
+    //Agregado de toastify
+    Toastify({
+        text: "Producto borrado",
+        duration: 1500,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #F34530, #F5731A)",
+        },
+    }).showToast();
     // Obtengo el producto ID que hay en el boton pulsado
     const id = evento.target.dataset.item;
     // Borro todos los productos
@@ -171,6 +195,42 @@ function calcularTotal() {
  * Vacia el carrito y vuelve a dibujarlo
  */
 function vaciarCarrito() {
+    //Agregado de SWEETALERT
+    Swal.fire({
+        title: 'Estas seguro?',
+        text: "Estas a punto de vaciar tu carrito",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Si, vaciar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Vaciado!',
+                'Tu carrito no contiene ningun producto.',
+                'success'
+            )
+            // Limpio los productos guardados
+            carrito = [];
+            // Renderizo los cambios
+            renderizarCarrito();
+            // Borra LocalStorage
+            localStorage.clear();
+        }
+    })
+}
+
+/**
+ * Finaliza compra deberia dirigir al pago pero por ahora solo vacia el carrito y vuelve a dibujarlo
+ */
+function finalizarCompra() {
+    //Agregado de SWEETALERT
+    Swal.fire(
+        'Haz finalizado tu compra!',
+        'Gracias por confiar en nuestros productos!',
+        'success'
+    )
     // Limpio los productos guardados
     carrito = [];
     // Renderizo los cambios
@@ -179,11 +239,12 @@ function vaciarCarrito() {
     localStorage.clear();
 }
 
-function guardarCarritoEnLocalStorage () {
+
+function guardarCarritoEnLocalStorage() {
     miLocalStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-function cargarCarritoDeLocalStorage () {
+function cargarCarritoDeLocalStorage() {
     // Existe un carrito previo guardado en LocalStorage?
     if (miLocalStorage.getItem('carrito') !== null) {
         // Carga la información
@@ -193,7 +254,7 @@ function cargarCarritoDeLocalStorage () {
 
 // Eventos
 DOMbotonVaciar.addEventListener('click', vaciarCarrito);
-DOMbotonComprar.addEventListener('click', vaciarCarrito);// aca se supone que redirige a pasarela de pagos para pagar
+DOMbotonComprar.addEventListener('click', finalizarCompra);// aca se supone que redirige a pasarela de pagos para pagar
 
 // Inicio
 cargarCarritoDeLocalStorage();
