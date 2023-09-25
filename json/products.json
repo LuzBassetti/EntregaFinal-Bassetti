@@ -1,0 +1,65 @@
+[
+    {
+      "id": 1,
+      "imagen": "img/chocotorta.jpeg",
+      "nombre": "Chocotorta",
+      "precio": 4000,
+      "size": "Pequeña"
+    },
+    {
+        "id": 2,
+        "imagen": "img/chocotorta.jpeg",
+        "nombre": "Chocotorta",
+        "precio": 5500,
+        "size": "Mediana"
+    },
+    {
+        "id": 3,
+        "imagen": "img/chocotorta.jpeg",
+        "nombre": "Chocotorta",
+        "precio": 7000,
+        "size": "Grande"
+    },
+    {
+        "id": 4,
+        "imagen": "img/cheesecake.jpeg",
+        "nombre": "Cheesecake",
+        "precio": 4500,
+        "size": "Pequeño"
+    },
+    {
+        "id": 5,
+        "imagen": "img/cheesecake.jpeg",
+        "nombre": "Cheesecake",
+        "precio": 6000,
+        "size": "Mediano"
+    },
+    {
+        "id": 6,
+        "imagen": "img/cheesecake.jpeg",
+        "nombre": "Cheesecake",
+        "precio": 8000,
+        "size": "Grande"
+    },
+    {
+        "id": 7,
+        "imagen": "img/lemon.jpeg",
+        "nombre": "Lemon Pie",
+        "precio": 3500,
+        "size": "Pequeño"
+    },
+    {
+        "id": 8,
+        "imagen": "img/lemon.jpeg",
+        "nombre": "Lemon Pie",
+        "precio": 4500,
+        "size": "Mediano"
+    },
+    {
+        "id": 9,
+        "imagen": "img/lemon.jpeg",
+        "nombre": "Lemon Pie",
+        "precio": 6500,
+        "size": "Grande"
+    }
+]

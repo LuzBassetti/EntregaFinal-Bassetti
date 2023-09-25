@@ -1,30 +1,30 @@
-class producto {
-    constructor(id, nombre, precio, imagen, size) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.imagen = imagen;
-        this.size = size;
-    }
-}
+// class producto {
+//     constructor(id, nombre, precio, imagen, size) {
+//         this.id = id;
+//         this.nombre = nombre;
+//         this.precio = precio;
+//         this.imagen = imagen;
+//         this.size = size;
+//     }
+// }
 
+// const productos = [];
+// productos.push(new producto(1, "Chocotorta", 4000, "img/chocotorta.jpeg", "Pequeña",));
+// productos.push(new producto(2, "Chocotorta", 5500, "img/chocotorta.jpeg", "Mediana"));
+// productos.push(new producto(3, "Chocotorta", 7000, "img/chocotorta.jpeg", "Grande"));
+// productos.push(new producto(4, "Cheesecake", 4500, "img/cheesecake.jpeg", "Pequeño"));
+// productos.push(new producto(5, "Cheesecake", 6000, "img/cheesecake.jpeg", "Mediano"));
+// productos.push(new producto(6, "Cheesecake", 8000, "img/cheesecake.jpeg", "Grande"));
+// productos.push(new producto(7, "Lemon Pie", 3500, "img/lemon.jpeg", "Pequeño"));
+// productos.push(new producto(8, "Lemon Pie", 4500, "img/lemon.jpeg", "Mediano"));
+// productos.push(new producto(9, "Lemon Pie", 6500, "img/lemon.jpeg", "Grande"));
 
-const productos = [];
-productos.push(new producto(1, "Chocotorta", 4000, "img/chocotorta.jpeg", "Pequeña",));
-productos.push(new producto(2, "Chocotorta", 5500, "img/chocotorta.jpeg", "Mediana"));
-productos.push(new producto(3, "Chocotorta", 7000, "img/chocotorta.jpeg", "Grande"));
-productos.push(new producto(4, "Cheesecake", 4500, "img/cheesecake.jpeg", "Pequeño"));
-productos.push(new producto(5, "Cheesecake", 6000, "img/cheesecake.jpeg", "Mediano"));
-productos.push(new producto(6, "Cheesecake", 8000, "img/cheesecake.jpeg", "Grande"));
-productos.push(new producto(7, "Lemon Pie", 3500, "img/lemon.jpeg", "Pequeño"));
-productos.push(new producto(8, "Lemon Pie", 4500, "img/lemon.jpeg", "Mediano"));
-productos.push(new producto(9, "Lemon Pie", 6500, "img/lemon.jpeg", "Grande"));
-
-productos.forEach(producto => {
-    console.log(producto)
-});
+// productos.forEach(producto => {
+//     console.log(producto)
+// });
 
 let carrito = [];
+let data = [];
 const divisa = '$';
 const DOMitems = document.getElementById('items');
 const DOMcarrito = document.getElementById('carrito');
@@ -37,10 +37,28 @@ const miLocalStorage = window.localStorage;
 // Funciones
 
 /**
+ * Trae productos desde base de datos
+ */
+const fetchData = async () => {
+    try {
+        const response = await fetch('./json/products.json');
+        data = await response.json();
+        console.log(data);
+
+        renderizarProductos(data);
+
+    } catch (error) {
+        console.error (`Error al obetener productos`, error);
+        throw error;
+    }
+}
+
+
+/**
  * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
  */
 function renderizarProductos() {
-    productos.forEach((info) => {
+    data.forEach((info) => {
         // Estructura
         const miNodo = document.createElement('div');
         miNodo.classList.add('card', 'col-sm-4');
@@ -51,7 +69,7 @@ function renderizarProductos() {
         const miNodoTitle = document.createElement('h5');
         miNodoTitle.classList.add('card-title');
         miNodoTitle.textContent = info.nombre;
-        //Tamanio
+        //Tamaño
         const miNodoSize = document.createElement('h6');
         miNodoSize.classList.add('card-text');
         miNodoSize.textContent = info.size;
@@ -117,7 +135,8 @@ function renderizarCarrito() {
     console.log(carritoSinDuplicados)
     carritoSinDuplicados.forEach((item) => {
         // Obtengo el item que necesitamos de la variable base de datos
-        const miItem = productos.filter((itemBaseDatos) => {
+        const miItem = data.filter((itemBaseDatos) => {
+            console.log (itemBaseDatos)
             // Coincide las id? Solo puede existir un caso
             return itemBaseDatos.id === parseInt(item);
         });
@@ -183,7 +202,7 @@ function calcularTotal() {
     // Recorro el array del carrito 
     return carrito.reduce((total, item) => {
         // De cada elemento obtenemos su precio
-        const miItem = productos.filter((itemBaseDatos) => {
+        const miItem = data.filter((itemBaseDatos) => {
             return itemBaseDatos.id === parseInt(item);
         });
         // Los sumo al total
@@ -257,7 +276,9 @@ DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 DOMbotonComprar.addEventListener('click', finalizarCompra);// aca se supone que redirige a pasarela de pagos para pagar
 
 // Inicio
+fetchData();
 cargarCarritoDeLocalStorage();
-renderizarProductos();
+
 renderizarCarrito();
+
 
