@@ -41,7 +41,7 @@ const miLocalStorage = window.localStorage;
  */
 const fetchData = async () => {
     try {
-        const response = await fetch('./json/products.json');
+        const response = await fetch('./json/products.jsonn');
         data = await response.json();
         console.log(data);
 
@@ -51,7 +51,13 @@ const fetchData = async () => {
 
     } catch (error) {
         console.error (`Error al obetener productos`, error);
-        throw error;
+
+        //agregado de switalert para UI
+        Swal.fire(
+            'Lo sentimos...',
+            'Hubo un error en la carga de datos',
+            'error'
+          )
     }
 }
 
