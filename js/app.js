@@ -41,7 +41,7 @@ const miLocalStorage = window.localStorage;
  */
 const fetchData = async () => {
     try {
-        const response = await fetch('./json/products.jsonn');
+        const response = await fetch('./json/products.json');
         data = await response.json();
         console.log(data);
 
