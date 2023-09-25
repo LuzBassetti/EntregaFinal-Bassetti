@@ -46,6 +46,8 @@ const fetchData = async () => {
         console.log(data);
 
         renderizarProductos(data);
+        cargarCarritoDeLocalStorage();
+        renderizarCarrito();
 
     } catch (error) {
         console.error (`Error al obetener productos`, error);
@@ -277,8 +279,6 @@ DOMbotonComprar.addEventListener('click', finalizarCompra);// aca se supone que 
 
 // Inicio
 fetchData();
-cargarCarritoDeLocalStorage();
 
-renderizarCarrito();
 
 
